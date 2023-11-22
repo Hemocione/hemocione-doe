@@ -29,17 +29,19 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
   padding: 0;
 }
 
 .value {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 900;
   max-width: 100%;
   margin: 0;
   color: var(--hemo-color-primary);
   white-space: nowrap;
+  align-self: center;
 }
 
 .title {
@@ -59,10 +61,10 @@
     padding: 1rem;
   }
   .value {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   .title {
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
 }
 </style>

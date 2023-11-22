@@ -74,11 +74,13 @@ const offers = [
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+  width: 80%;
+  height: 90%;
 }
 
 .logo-blood-brothers {
   height: 100%;
-  max-height: 50dvh;
+  max-height: 40dvh;
 }
 
 .brothers-title {
@@ -98,7 +100,6 @@ const offers = [
 .donor-CTA {
   background-color: var(--hemo-color-primary);
   min-height: 50dvh;
-  height: 50dvh;
   width: 100%;
   padding: 2rem;
   display: flex;
@@ -185,6 +186,10 @@ const offers = [
   .logo-blood-brothers {
     height: 100%;
     max-height: 30dvh;
+  }
+
+  .offers {
+    width: 100%;
   }
 }
 </style>
