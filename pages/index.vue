@@ -141,7 +141,7 @@ const offers = [
   font-size: 4rem;
   font-weight: 900;
   text-align: center;
-  max-width: 50%;
+  max-width: 90%;
   margin: 0;
 }
 
@@ -149,7 +149,7 @@ const offers = [
   font-size: 1.5rem;
   font-weight: 300;
   text-align: center;
-  max-width: 50%;
+  max-width: 90%;
   margin: 0;
 }
 
