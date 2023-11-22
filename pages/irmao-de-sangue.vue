@@ -1,12 +1,12 @@
 <template>
-  <div class="page">
+  <div class="my-page">
     <div class="top-bar-hider">
       <ElIcon class="icon" @click="goBack">
         <ElIconArrowLeftBold />
       </ElIcon>
       <NuxtImg src="/images/logos/logo-horizontal-branca.svg" class="logo" />
     </div>
-    <iframe class="doare" :src="doareUrl" />
+    <iframe class="doare" :src="doareUrl" fullscreen frameborder="0" />
   </div>
 </template>
 
@@ -49,10 +49,19 @@ const doareUrl = `https://paybox.doare.org/paybox?lang=br&currency=BRL&orgId=0cb
   width: 100%;
   height: 100dvh;
   border: none;
+  overflow-x: hidden;
 }
 
 .logo {
   height: 80%;
   max-width: 80%;
+}
+
+.my-page {
+  margin: 0;
+  width: 100%;
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
 }
 </style>
