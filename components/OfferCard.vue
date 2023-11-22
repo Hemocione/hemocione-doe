@@ -35,7 +35,7 @@
 }
 
 .value {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 900;
   max-width: 100%;
   margin: 0;
