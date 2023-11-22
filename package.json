@@ -8,6 +8,11 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "^3.0.0"
+    "@element-plus/nuxt": "^1.0.7",
+    "@nuxt/image": "^1.1.0",
+    "@nuxtjs/google-fonts": "^3.0.2",
+    "element-plus": "^2.4.2",
+    "nuxt": "^3.8.2",
+    "nuxt-vercel-analytics": "^0.2.2"
   }
 }
