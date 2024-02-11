@@ -75,7 +75,7 @@ const offers = [
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   width: 80%;
-  height: 90%;
+  aspect-ratio: 3/1;
 }
 
 .logo-blood-brothers {
