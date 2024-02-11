@@ -87,7 +87,7 @@
 "@babel/helper-create-class-features-plugin@^7.22.15":
   version "7.22.15"
   resolved "https://registry.yarnpkg.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.22.15.tgz#97a61b385e57fe458496fad19f8e63b63c867de4"
-  integrity sha512-jKkwA59IXcvSaiK2UN45kKwSC9o+KuoXsBDvHvU/7BecYIp8GQ2UwrVvFgJASUT+hBnwJx6MhvMCuMzwZZ7jlg==
+  integrity sha512-jKkwA59IXcvSaiK2UN45kKwSC9o+KuoXsBsvhvU/7BecYIp8GQ2UwrVvFgJASUT+hBnwJx6MhvMCuMzwZZ7jlg==
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.22.5"
     "@babel/helper-environment-visitor" "^7.22.5"
@@ -1437,7 +1437,7 @@
 "@unhead/shared@1.8.7":
   version "1.8.7"
   resolved "https://registry.yarnpkg.com/@unhead/shared/-/shared-1.8.7.tgz#c9f6a70c06611573dc567981d069cdcda4ca7d27"
-  integrity sha512-312MguOHCiHQ+5xBShXpU99VLADnSRBPhkfWSreqU32innwH1Kcedslc79VS0s8m8Uje6q3+dVH23AW3oAH0uA==
+  integrity sha512-312MguOHCiHQ+5xBShXpU99VLADnSRBPhkfWSreqU32innwH1Kcedslc79VS0s8m8Uje6q3+svh23AW3oAH0uA==
   dependencies:
     "@unhead/schema" "1.8.7"
 

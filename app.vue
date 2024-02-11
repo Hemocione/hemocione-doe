@@ -35,7 +35,7 @@ useServerSeoMeta({
 <style scoped>
 .app-do-pai {
   background-color: var(--hemo-color-secondary);
-  min-height: 100dvh;
+  min-height: 100svh;
   width: 100%;
 }
 </style>

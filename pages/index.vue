@@ -80,7 +80,7 @@ const offers = [
 
 .logo-blood-brothers {
   height: 100%;
-  max-height: 40dvh;
+  max-height: 40svh;
 }
 
 .brothers-title {
@@ -99,7 +99,7 @@ const offers = [
 
 .donor-CTA {
   background-color: var(--hemo-color-primary);
-  min-height: 50dvh;
+  min-height: 50svh;
   width: 100%;
   padding: 2rem;
   display: flex;
@@ -110,7 +110,7 @@ const offers = [
 
 .banner-wrapper {
   position: relative;
-  height: 50dvh;
+  height: 50svh;
   width: 100%;
 }
 
@@ -185,7 +185,7 @@ const offers = [
 
   .logo-blood-brothers {
     height: 100%;
-    max-height: 30dvh;
+    max-height: 30svh;
   }
 
   .offers {

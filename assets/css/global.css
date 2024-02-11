@@ -62,12 +62,12 @@ body {
 
 #__nuxt {
   width: 100%;
-  min-height: 100dvh;
+  min-height: 100svh;
 }
 
 
 body {
-  min-height: 100dvh;
+  min-height: 100svh;
   width: 100vw;
 }
 
@@ -98,7 +98,7 @@ a:active, a:focus, a:hover, a:visited {
 .page {
   margin: 0;
   width: 100%;
-  height: 100dvh;
+  height: 100svh;
   position: relative;
 }
 
