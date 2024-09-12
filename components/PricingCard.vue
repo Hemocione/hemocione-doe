@@ -8,7 +8,7 @@
       >
         <NuxtImg :src="logo" :alt="name" class="w-12 h-12 object-contain" />
       </div>
-      <h2 class="mb-4 text-2xl font-bold text-gray-800 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-800 text-center">
         {{ name }}
       </h2>
       <div class="mb-6 text-center">
