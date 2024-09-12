@@ -28,7 +28,11 @@
             :key="offer.title"
             style="width: 100%; height: 100%"
           >
-            <OfferCard :title="offer.title" :value="offer.value" />
+            <PricingCard
+              :logo="offer.logo"
+              :name="offer.title"
+              :cost="`R$ ${offer.value}`"
+            />
           </NuxtLink>
         </div>
       </div>
@@ -37,22 +41,27 @@
 </template>
 
 <script setup lang="ts">
+import PricingCard from "~/components/PricingCard.vue";
 const offers = [
   {
     title: "Plano Gotinha",
     value: "9.90",
+    logo: "/images/logos/planos/gotinha.png",
   },
   {
     title: "Plano Hemácia",
     value: "29.90",
+    logo: "/images/logos/planos/hemacia.png",
   },
   {
     title: "Plano Gota",
     value: "49.90",
+    logo: "/images/logos/planos/gota.png",
   },
   {
     title: "Plano Bolsa",
     value: "99.90",
+    logo: "/images/logos/planos/bolsa.png",
   },
 ];
 </script>
@@ -71,11 +80,11 @@ const offers = [
 }
 
 .offers {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  width: 80%;
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
   aspect-ratio: 3/1;
+  box-sizing: border-box;
 }
 
 .logo-blood-brothers {
@@ -189,7 +198,10 @@ const offers = [
   }
 
   .offers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     width: 100%;
+    aspect-ratio: 1/1;
   }
 }
 </style>
