@@ -8,7 +8,7 @@
         alt="Dois doadores sorrindo de camiseta vermelha do Hemocione"
       />
       <div class="hero-content">
-        <span class="logo-badge">
+        <span class="logo-badge" ref="logoBadgeRef">
           <NuxtImg src="/images/logos/logo-padrao.svg" class="hero-logo" />
         </span>
         <h1 class="hero-title">Doe Sangue, Doe Vida</h1>
@@ -16,17 +16,26 @@
           Vire um irmão de sangue: sua doação mensal mantém o Hemocione
           salvando vidas todos os dias.
         </p>
+        <button class="hero-scroll" @click="scrollToCTA" aria-label="Quero doar">
+          Quero doar
+          <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 13l5 5 5-5M12 6v12" />
+          </svg>
+        </button>
       </div>
     </section>
 
-    <section class="impact-card">
-      <div class="impact-item" v-for="stat in impactStats" :key="stat.label">
-        <span class="impact-value">{{ stat.value }}</span>
-        <span class="impact-label">{{ stat.label }}</span>
+    <section class="impact-section">
+      <div class="impact-card" ref="impactCardRef">
+        <div class="impact-item" v-for="stat in impactStats" :key="stat.label">
+          <span class="impact-value">{{ stat.value }}</span>
+          <span class="impact-label">{{ stat.label }}</span>
+        </div>
       </div>
     </section>
 
-    <section class="donor-CTA">
+    <section class="donor-CTA" ref="donorCTARef">
+      <div class="cta-backdrop" />
       <NuxtImg
         src="/images/logos/blood-brothers.png"
         class="logo-blood-brothers"
@@ -39,7 +48,7 @@
             v-for="offer in offers"
             :to="`/irmao-de-sangue?value=${offer.value}`"
             :key="offer.title"
-            style="width: 100%; height: 100%"
+            class="offer-link"
           >
             <PricingCard
               :logo="offer.logo"
@@ -57,6 +66,12 @@
 
 <script setup lang="ts">
 import PricingCard from "~/components/PricingCard.vue";
+
+const donorCTARef = ref<HTMLElement | null>(null);
+
+function scrollToCTA() {
+  donorCTARef.value?.scrollIntoView({ behavior: "smooth" });
+}
 
 const impactStats = [
   { value: "230", label: "eventos realizados" },
@@ -99,8 +114,8 @@ const offers = [
 <style scoped>
 .hero {
   position: relative;
-  height: 48svh;
-  min-height: 340px;
+  height: 65svh;
+  min-height: 420px;
   width: 100%;
   overflow: hidden;
 }
@@ -112,7 +127,13 @@ const offers = [
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center 20%;
+  animation: hero-drift 12s ease-in-out infinite alternate;
+}
+
+@keyframes hero-drift {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
 }
 
 .hero-content {
@@ -124,12 +145,13 @@ const offers = [
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   text-align: center;
   background: linear-gradient(
     180deg,
-    rgba(187, 10, 8, 0.15) 0%,
-    rgba(187, 10, 8, 0.9) 100%
+    rgba(187, 10, 8, 0.05) 0%,
+    rgba(187, 10, 8, 0.25) 40%,
+    rgba(120, 0, 0, 0.92) 100%
   );
   color: white;
 }
@@ -138,10 +160,20 @@ const offers = [
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 999px;
-  padding: 0.6rem 1.4rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  padding: 0.7rem 1.5rem;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  animation: logo-pop 0.7s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes logo-pop {
+  0% { opacity: 0; transform: translateY(12px) scale(0.92); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .hero-logo {
@@ -152,38 +184,106 @@ const offers = [
 
 .hero-title {
   font-family: var(--hemo-font-display);
-  font-size: 2.4rem;
-  font-weight: 700;
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  font-weight: 900;
   margin: 0;
   max-width: 90%;
-  letter-spacing: -0.01em;
+  color: white;
+  line-height: 1.1;
+  animation: text-rise 0.7s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes text-rise {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .hero-text {
   font-size: 1.05rem;
-  font-weight: 300;
-  max-width: 32rem;
+  font-weight: 400;
+  max-width: 34rem;
   margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  animation: text-rise 0.7s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-scroll {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  animation: text-rise 0.7s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  font-family: inherit;
+}
+
+.hero-scroll:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+  transform: translateY(-2px);
+}
+
+.hero-scroll:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
+}
+
+.scroll-arrow {
+  width: 18px;
+  height: 18px;
+  animation: bounce-arrow 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+.impact-section {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  margin-top: -3.5rem;
+  padding: 0 1rem;
 }
 
 .impact-card {
-  position: relative;
-  z-index: 5;
-  margin: -2.75rem auto 2.5rem;
-  width: calc(100% - 2rem);
-  max-width: 56rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  width: 100%;
+  max-width: 48rem;
   border-radius: 1.5rem;
   background: linear-gradient(
     135deg,
-    var(--hemo-color-primary-dark) 0%,
+    #6b0000 0%,
+    var(--hemo-color-primary-dark) 40%,
     #3a0303 100%
   );
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2.25rem;
-  padding: 1.75rem 1.5rem;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  padding: 1.75rem 0.5rem;
+  overflow: hidden;
+}
+
+.impact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.06), transparent 70%);
+  pointer-events: none;
 }
 
 .impact-item {
@@ -191,120 +291,160 @@ const offers = [
   flex-direction: column;
   align-items: center;
   gap: 0.2rem;
+  padding: 0 0.5rem;
+  position: relative;
+}
+
+.impact-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .impact-value {
   font-family: var(--hemo-font-display);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 900;
   color: white;
+  line-height: 1;
 }
 
 .impact-label {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+  color: rgba(255, 255, 255, 0.7);
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
+  font-weight: 500;
 }
 
 .donor-CTA {
   background-color: var(--hemo-color-primary);
   min-height: 50svh;
   width: 100%;
-  padding: 2.5rem 2rem;
+  padding: 3rem 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(255, 255, 255, 0.06), transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(0, 0, 0, 0.15), transparent 50%);
+  pointer-events: none;
+}
+
+.logo-blood-brothers {
+  height: auto;
+  max-height: 12rem;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.35));
+  flex-shrink: 0;
+  animation: float-seal 4s ease-in-out infinite;
+}
+
+@keyframes float-seal {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 .offers-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
   align-items: center;
-  justify-content: space-between;
-  color: var(--hemo-color-secondary);
+  color: white;
   width: 100%;
-  height: 100%;
+  max-width: 38rem;
 }
 
 .offers-title {
   font-family: var(--hemo-font-display);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .offers {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
   width: 100%;
-  aspect-ratio: 3/1;
-  box-sizing: border-box;
 }
 
-.logo-blood-brothers {
-  height: 100%;
-  max-height: 40svh;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+.offer-link {
+  width: 100%;
+  display: block;
 }
 
 @media screen and (max-width: 768px) {
   .hero {
     height: auto;
-    min-height: 42svh;
+    min-height: 55svh;
   }
 
   .hero-content {
-    padding: 1.25rem;
-  }
-
-  .hero-title {
-    font-size: 1.85rem;
-  }
-
-  .hero-text {
-    font-size: 0.9rem;
+    padding: 2rem 1rem;
   }
 
   .hero-logo {
-    width: 6.5rem;
+    width: 7rem;
+  }
+
+  .hero-scroll {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+  }
+
+  .impact-section {
+    margin-top: -2.5rem;
   }
 
   .impact-card {
-    margin: -2rem auto 2rem;
-    width: calc(100% - 1.25rem);
-    gap: 1.5rem;
-    padding: 1.25rem 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: 1.25rem;
+    padding: 1.5rem 0.25rem;
+  }
+
+  .impact-item:not(:last-child)::after {
+    display: none;
   }
 
   .impact-value {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .impact-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.03em;
   }
 
   .donor-CTA {
     flex-direction: column;
     gap: 1.5rem;
-    height: 100%;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
   }
 
   .logo-blood-brothers {
-    height: auto;
-    max-height: 22svh;
-  }
-
-  .offers-title {
-    font-size: 1.4rem;
+    max-height: 5rem;
   }
 
   .offers {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-    aspect-ratio: 1/1;
-    gap: 0.5rem;
+    gap: 0.6rem;
+  }
+
+  .offers-title {
+    font-size: 1.3rem;
   }
 }
 </style>
