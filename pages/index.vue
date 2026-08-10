@@ -253,7 +253,7 @@ const offers = [
   background-color: #fff;
   display: flex;
   justify-content: center;
-  padding: 2.5rem 1rem 0;
+  padding: 2.5rem 1rem;
 }
 
 .impact-strip {
@@ -381,7 +381,7 @@ const offers = [
   }
 
   .impact-section {
-    padding: 1.75rem 0.75rem 0;
+    padding: 1.75rem 0.75rem;
   }
 
   .impact-strip {
