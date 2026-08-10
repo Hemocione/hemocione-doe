@@ -13,46 +13,65 @@
       />
       <span class="header-spacer" />
     </header>
-    <p class="reassurance">🔒 Pagamento seguro processado por Doare</p>
-    <iframe
-      class="doare"
-      :src="doareUrl"
-      fullscreen
-      frameborder="0"
-      title="Formulário de doação Doare"
-    />
+
+    <main class="content">
+      <div class="drop-icon">💧</div>
+      <h1>Você está doando R$ {{ displayValue }}<span>/mês</span></h1>
+      <p class="lead">
+        Você será redirecionado para o <strong>Doare</strong>, nosso parceiro
+        de pagamentos, num ambiente seguro e certificado. Depois de confirmar,
+        você volta a fazer parte da nossa rede de irmãos de sangue.
+      </p>
+
+      <a :href="doareUrl" class="continue-button" @click="markManualClick">
+        Continuar para o pagamento seguro
+        <span aria-hidden="true">→</span>
+      </a>
+
+      <p class="auto-redirect" v-if="!manualClick">
+        Redirecionando automaticamente em {{ countdown }}s…
+      </p>
+
+      <p class="trust-line">🔒 Pagamento processado pela Doare • PIX, cartão e boleto</p>
+    </main>
   </div>
 </template>
 
 <script setup lang="ts">
 const route = useRoute();
-const router = useRouter();
 
 const query = route.query;
 const { subscribe, value } = query;
 const subscribeParam = subscribe ?? 1;
+const rawValue = Array.isArray(value) ? value[0] : value ?? "9.90";
 
-const doareUrl = `https://paybox.doare.org/paybox?lang=br&currency=BRL&orgId=0cbc0564-91b2-45e1-9859-a3b52bdaa683&values=9.90,29.90,49.90,99.90,500,1000&amount=${
-  value ?? "9.90"
-}&subscribe=${subscribeParam}&newsletter=0&subscriptionAmount=30&showSubscription=${subscribeParam}`;
+const displayValue = computed(() =>
+  Number(rawValue).toFixed(2).replace(".", ",")
+);
 
-// Best-effort: a Doare pode ou não emitir postMessage no sucesso do pagamento.
-// Isso não foi verificado (não é seguro simular um pagamento real pra testar).
-// Se a Doare emitir algo reconhecível como sucesso, redirecionamos pro /obrigado.
-// Se nunca disparar, o comportamento atual (usuário fica na tela da Doare
-// até fechar/voltar manualmente) é preservado — nenhuma regressão.
-function handleDoareMessage(event: MessageEvent) {
-  if (event.origin !== "https://paybox.doare.org") return;
-  const payload = event.data;
-  const text =
-    typeof payload === "string" ? payload : JSON.stringify(payload ?? "");
-  if (/success|sucesso|paid|pago|completed/i.test(text)) {
-    router.push("/obrigado");
-  }
+const doareUrl = `https://paybox.doare.org/paybox?lang=br&currency=BRL&orgId=0cbc0564-91b2-45e1-9859-a3b52bdaa683&values=9.90,29.90,49.90,99.90,500,1000&amount=${rawValue}&subscribe=${subscribeParam}&newsletter=0&subscriptionAmount=30&showSubscription=${subscribeParam}`;
+
+const countdown = ref(4);
+const manualClick = ref(false);
+let timer: ReturnType<typeof setInterval> | undefined;
+
+function markManualClick() {
+  manualClick.value = true;
 }
 
-onMounted(() => window.addEventListener("message", handleDoareMessage));
-onUnmounted(() => window.removeEventListener("message", handleDoareMessage));
+onMounted(() => {
+  timer = setInterval(() => {
+    countdown.value -= 1;
+    if (countdown.value <= 0) {
+      clearInterval(timer);
+      window.location.href = doareUrl;
+    }
+  }, 1000);
+});
+
+onUnmounted(() => {
+  if (timer) clearInterval(timer);
+});
 </script>
 
 <style scoped>
@@ -87,29 +106,80 @@ onUnmounted(() => window.removeEventListener("message", handleDoareMessage));
   height: 24px;
 }
 
-.reassurance {
-  margin: 0;
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  font-size: 0.8rem;
-  color: var(--hemo-color-text-secondary);
-  background: var(--hemo-color-secondary);
-  padding: 0.4rem 0;
-  flex-shrink: 0;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  max-width: 34rem;
+  margin: 0 auto;
 }
 
-.doare {
-  width: 100%;
-  flex: 1;
-  border: none;
-  overflow-x: hidden;
+.drop-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 1.9rem;
+  margin: 0;
+  color: var(--hemo-color-primary);
+}
+
+h1 span {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--hemo-color-text-secondary);
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: var(--hemo-color-text-secondary);
+  margin: 0;
+}
+
+.continue-button {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  min-height: 44px;
+  border-radius: 999px;
+  background: var(--hemo-color-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  box-shadow: 0 8px 24px rgba(187, 10, 8, 0.35);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.continue-button:hover {
+  background: var(--hemo-color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.auto-redirect {
+  font-size: 0.85rem;
+  color: var(--hemo-color-text-secondary-opaque);
+  margin: 0;
+}
+
+.trust-line {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--hemo-color-text-secondary);
 }
 
 .my-page {
   margin: 0;
   width: 100%;
-  height: 100svh;
+  min-height: 100svh;
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
