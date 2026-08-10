@@ -26,7 +26,7 @@
     </section>
 
     <section class="impact-section">
-      <div class="impact-card" ref="impactCardRef">
+      <div class="impact-strip">
         <div class="impact-item" v-for="stat in impactStats" :key="stat.label">
           <span class="impact-value">{{ stat.value }}</span>
           <span class="impact-label">{{ stat.label }}</span>
@@ -254,17 +254,17 @@ const offers = [
   z-index: 5;
   display: flex;
   justify-content: center;
-  margin-top: -3.5rem;
+  margin-top: -3rem;
   padding: 0 1rem;
 }
 
-.impact-card {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  width: 100%;
-  max-width: 48rem;
-  border-radius: 1.5rem;
+.impact-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 1.5rem 2.5rem;
+  border-radius: 1.25rem;
   background: linear-gradient(
     135deg,
     #6b0000 0%,
@@ -272,42 +272,22 @@ const offers = [
     #3a0303 100%
   );
   box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-  padding: 1.75rem 0.5rem;
-  overflow: hidden;
-}
-
-.impact-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.06), transparent 70%);
-  pointer-events: none;
+    0 16px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  width: 100%;
+  max-width: 42rem;
 }
 
 .impact-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
-  padding: 0 0.5rem;
-  position: relative;
-}
-
-.impact-item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 15%;
-  height: 70%;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.15);
+  gap: 0.15rem;
 }
 
 .impact-value {
   font-family: var(--hemo-font-display);
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   font-weight: 900;
   color: white;
   line-height: 1;
@@ -316,10 +296,10 @@ const offers = [
 .impact-label {
   font-size: clamp(0.65rem, 1.5vw, 0.8rem);
   color: rgba(255, 255, 255, 0.7);
-  text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .donor-CTA {
@@ -406,26 +386,17 @@ const offers = [
   }
 
   .impact-section {
-    margin-top: -2.5rem;
+    margin-top: -2rem;
   }
 
-  .impact-card {
-    grid-template-columns: repeat(3, 1fr);
-    border-radius: 1.25rem;
-    padding: 1.5rem 0.25rem;
-  }
-
-  .impact-item:not(:last-child)::after {
-    display: none;
+  .impact-strip {
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
   }
 
   .impact-value {
-    font-size: 1.4rem;
-  }
-
-  .impact-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.03em;
+    font-size: 1.35rem;
   }
 
   .donor-CTA {

@@ -88,7 +88,7 @@ onMounted(() => {
     countdown.value -= 1;
     if (countdown.value <= 0) {
       clearInterval(timer);
-      window.location.href = doareUrl;
+      window.location.assign(doareUrl);
     }
   }, 1000);
 });
