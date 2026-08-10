@@ -250,56 +250,49 @@ const offers = [
 }
 
 .impact-section {
-  position: relative;
-  z-index: 5;
+  background-color: var(--hemo-color-primary);
   display: flex;
   justify-content: center;
-  margin-top: -3rem;
-  padding: 0 1rem;
+  padding: 2.5rem 1rem;
 }
 
 .impact-strip {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
-  padding: 1.5rem 2.5rem;
+  gap: 2.5rem;
+  padding: 1.5rem 2rem;
   border-radius: 1.25rem;
-  background: linear-gradient(
-    135deg,
-    #6b0000 0%,
-    var(--hemo-color-primary-dark) 40%,
-    #3a0303 100%
-  );
+  background: rgba(255, 255, 255, 0.95);
   box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    0 8px 30px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.15);
   width: 100%;
-  max-width: 42rem;
+  max-width: 36rem;
 }
 
 .impact-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.15rem;
+  gap: 0.1rem;
 }
 
 .impact-value {
   font-family: var(--hemo-font-display);
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: 900;
-  color: white;
+  color: var(--hemo-color-primary);
   line-height: 1;
 }
 
 .impact-label {
-  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
-  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.6rem, 1.4vw, 0.75rem);
+  color: #888;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   font-weight: 500;
-  white-space: nowrap;
+  text-align: center;
 }
 
 .donor-CTA {
@@ -386,17 +379,22 @@ const offers = [
   }
 
   .impact-section {
-    margin-top: -2rem;
+    padding: 1.75rem 0.75rem;
   }
 
   .impact-strip {
-    gap: 1.5rem;
-    padding: 1.25rem 1.5rem;
+    gap: 1rem;
+    padding: 1.25rem 1rem;
     border-radius: 1rem;
   }
 
   .impact-value {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
+  }
+
+  .impact-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.02em;
   }
 
   .donor-CTA {
