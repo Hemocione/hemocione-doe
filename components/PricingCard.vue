@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative w-full mx-auto overflow-hidden bg-white rounded-2xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-1.5 border"
+    class="relative w-full h-full mx-auto overflow-hidden bg-white rounded-2xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-1.5 border"
     :class="
       recommended
         ? 'border-[#bb0a08] border-2 shadow-[0_10px_30px_rgba(187,10,8,0.35)]'
@@ -40,13 +40,15 @@
       <button
         class="w-full flex items-center justify-center gap-1.5 px-3 py-2 sm:px-4 sm:py-3 font-bold text-white transition-colors duration-300 ease-in-out bg-[#bb0a08] rounded-xl text-xs sm:text-sm hover:bg-[#8a0000] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a6eed]"
       >
-        <span aria-hidden="true">💧</span> Ajudar
+        <DropIcon class="w-2.5 h-[0.9rem] shrink-0" /> Ajudar
       </button>
     </div>
   </div>
 </template>
 
 <script setup>
+import DropIcon from "~/components/DropIcon.vue";
+
 defineProps({
   logo: {
     type: String,

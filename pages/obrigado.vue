@@ -134,6 +134,7 @@ async function share() {
 }
 
 h1 {
+  font-family: var(--hemo-font-display);
   font-size: 2rem;
   margin: 0;
   color: var(--hemo-color-primary);

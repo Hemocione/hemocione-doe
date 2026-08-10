@@ -15,7 +15,7 @@
     </header>
 
     <main class="content">
-      <div class="drop-icon">💧</div>
+      <DropIcon class="drop-icon" />
       <h1>Você está doando R$ {{ displayValue }}<span>/mês</span></h1>
       <p class="lead">
         Você será redirecionado para o <strong>Doare</strong>, nosso parceiro
@@ -38,6 +38,8 @@
 </template>
 
 <script setup lang="ts">
+import DropIcon from "~/components/DropIcon.vue";
+
 const route = useRoute();
 
 const query = route.query;
@@ -120,11 +122,13 @@ onUnmounted(() => {
 }
 
 .drop-icon {
-  font-size: 3rem;
-  line-height: 1;
+  width: 2rem;
+  height: 3rem;
+  color: var(--hemo-color-primary);
 }
 
 h1 {
+  font-family: var(--hemo-font-display);
   font-size: 1.9rem;
   margin: 0;
   color: var(--hemo-color-primary);

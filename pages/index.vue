@@ -13,16 +13,13 @@
         </span>
         <h1 class="hero-title">Doe Sangue, Doe Vida</h1>
         <p class="hero-text">
-          Seu apoio é fundamental para o fortalecimento do Hemocione, o maior
-          fomentador da doação de sangue no país. Contribua para ajudar a
-          salvar ainda mais vidas e torne-se um irmão de sangue!
+          Vire um irmão de sangue: sua doação mensal mantém o Hemocione
+          salvando vidas todos os dias.
         </p>
-        <span class="hero-badge">Hemocione • ONG desde 2017</span>
       </div>
-      <div class="hero-clip" aria-hidden="true"></div>
     </section>
 
-    <section class="impact">
+    <section class="impact-card">
       <div class="impact-item" v-for="stat in impactStats" :key="stat.label">
         <span class="impact-value">{{ stat.value }}</span>
         <span class="impact-label">{{ stat.label }}</span>
@@ -102,8 +99,8 @@ const offers = [
 <style scoped>
 .hero {
   position: relative;
-  height: 68svh;
-  min-height: 460px;
+  height: 48svh;
+  min-height: 340px;
   width: 100%;
   overflow: hidden;
 }
@@ -121,33 +118,20 @@ const offers = [
 .hero-content {
   position: absolute;
   inset: 0;
-  z-index: 10;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.15rem;
+  gap: 1rem;
   padding: 1.5rem;
-  padding-bottom: 4rem;
   text-align: center;
   background: linear-gradient(
     180deg,
-    rgba(187, 10, 8, 0.1) 0%,
-    rgba(187, 10, 8, 0.88) 78%,
-    rgba(187, 10, 8, 0.98) 100%
+    rgba(187, 10, 8, 0.15) 0%,
+    rgba(187, 10, 8, 0.9) 100%
   );
-  color: var(--hemo-color-text-primary);
-}
-
-.hero-clip {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 64px;
-  background: var(--hemo-color-primary-dark);
-  clip-path: polygon(0 100%, 100% 0, 100% 100%);
-  z-index: 11;
+  color: white;
 }
 
 .logo-badge {
@@ -156,70 +140,68 @@ const offers = [
   justify-content: center;
   background: white;
   border-radius: 999px;
-  padding: 0.7rem 1.6rem;
+  padding: 0.6rem 1.4rem;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .hero-logo {
-  width: 9rem;
-  max-width: 55vw;
+  width: 8rem;
+  max-width: 50vw;
   display: block;
 }
 
 .hero-title {
-  font-size: 3rem;
-  font-weight: 900;
+  font-family: var(--hemo-font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
   margin: 0;
   max-width: 90%;
   letter-spacing: -0.01em;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
 .hero-text {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 300;
-  max-width: 40rem;
+  max-width: 32rem;
   margin: 0;
 }
 
-.hero-badge {
-  font-size: 0.85rem;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 999px;
-  padding: 0.35rem 1.1rem;
-}
-
-.impact {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 3.5rem;
-  padding: 3rem 1rem 2.5rem;
+.impact-card {
+  position: relative;
+  z-index: 5;
+  margin: -2.75rem auto 2.5rem;
+  width: calc(100% - 2rem);
+  max-width: 56rem;
+  border-radius: 1.5rem;
   background: linear-gradient(
     135deg,
     var(--hemo-color-primary-dark) 0%,
     #3a0303 100%
   );
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.25rem;
+  padding: 1.75rem 1.5rem;
 }
 
 .impact-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.2rem;
 }
 
 .impact-value {
-  font-size: 2.5rem;
-  font-weight: 900;
+  font-family: var(--hemo-font-display);
+  font-size: 2rem;
+  font-weight: 700;
   color: white;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 .impact-label {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.75);
   text-align: center;
   text-transform: uppercase;
@@ -249,7 +231,8 @@ const offers = [
 }
 
 .offers-title {
-  font-size: 2.1rem;
+  font-family: var(--hemo-font-display);
+  font-size: 2rem;
   font-weight: 700;
 }
 
@@ -270,28 +253,34 @@ const offers = [
 @media screen and (max-width: 768px) {
   .hero {
     height: auto;
-    min-height: 64svh;
+    min-height: 42svh;
+  }
+
+  .hero-content {
+    padding: 1.25rem;
   }
 
   .hero-title {
-    font-size: 2.1rem;
+    font-size: 1.85rem;
   }
 
   .hero-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .hero-logo {
-    width: 7rem;
+    width: 6.5rem;
   }
 
-  .impact {
-    gap: 2rem;
-    padding: 2.5rem 1rem 2rem;
+  .impact-card {
+    margin: -2rem auto 2rem;
+    width: calc(100% - 1.25rem);
+    gap: 1.5rem;
+    padding: 1.25rem 1rem;
   }
 
   .impact-value {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 
   .donor-CTA {

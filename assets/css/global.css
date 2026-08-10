@@ -10,6 +10,7 @@
   --hemo-color-text-primary: #f2f2f2;
   --blood-brothers-primary: #1a6eed;
   --hemo-color-focus: #1a6eed;
+  --hemo-font-display: "Fredoka", "Roboto", sans-serif;
   --el-color-primary: var(--hemo-color-primary) !important;
   --el-color-main: var(--hemo-color-secondary) !important;
   --el-color-success: var(--hemo-color-success) !important;

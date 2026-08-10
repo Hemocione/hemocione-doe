@@ -23,6 +23,7 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       Roboto: true,
+      Fredoka: [600, 700],
     },
   },
 
