@@ -250,10 +250,10 @@ const offers = [
 }
 
 .impact-section {
-  background-color: var(--hemo-color-primary);
+  background-color: #fff;
   display: flex;
   justify-content: center;
-  padding: 2.5rem 1rem;
+  padding: 2.5rem 1rem 0;
 }
 
 .impact-strip {
@@ -263,10 +263,12 @@ const offers = [
   gap: 2.5rem;
   padding: 1.5rem 2rem;
   border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    135deg,
+    var(--hemo-color-primary-dark) 0%,
+    var(--hemo-color-primary) 100%
+  );
+  box-shadow: 0 10px 35px rgba(187, 10, 8, 0.3);
   width: 100%;
   max-width: 36rem;
 }
@@ -282,13 +284,13 @@ const offers = [
   font-family: var(--hemo-font-display);
   font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: 900;
-  color: var(--hemo-color-primary);
+  color: white;
   line-height: 1;
 }
 
 .impact-label {
   font-size: clamp(0.6rem, 1.4vw, 0.75rem);
-  color: #888;
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-weight: 500;
@@ -379,7 +381,7 @@ const offers = [
   }
 
   .impact-section {
-    padding: 1.75rem 0.75rem;
+    padding: 1.75rem 0.75rem 0;
   }
 
   .impact-strip {
