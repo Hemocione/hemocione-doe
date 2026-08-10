@@ -9,6 +9,7 @@
   --hemo-color-text-secondary-opaque: rgba(37, 40, 43, 0.2);
   --hemo-color-text-primary: #f2f2f2;
   --blood-brothers-primary: #1a6eed;
+  --hemo-color-focus: #1a6eed;
   --el-color-primary: var(--hemo-color-primary) !important;
   --el-color-main: var(--hemo-color-secondary) !important;
   --el-color-success: var(--hemo-color-success) !important;
@@ -65,7 +66,6 @@ a {
 }
 
 a:active,
-a:focus,
 a:hover,
 a:visited {
   outline: 0;
@@ -73,8 +73,19 @@ a:visited {
   outline-style: none;
 }
 
-*:focus {
-  outline: 0 !important;
+a:focus:not(:focus-visible) {
+  outline: 0;
+  -moz-outline-style: none;
+  outline-style: none;
+}
+
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--hemo-color-focus);
+  outline-offset: 2px;
 }
 
 * {
