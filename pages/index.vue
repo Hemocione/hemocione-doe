@@ -278,6 +278,8 @@ const offers = [
   flex-direction: column;
   align-items: center;
   gap: 0.1rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .impact-value {
@@ -286,6 +288,8 @@ const offers = [
   font-weight: 900;
   color: white;
   line-height: 1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .impact-label {
@@ -392,10 +396,11 @@ const offers = [
 
   .impact-value {
     font-size: 1.25rem;
+    white-space: nowrap;
   }
 
   .impact-label {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     letter-spacing: 0.02em;
   }
 
